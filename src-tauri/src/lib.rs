@@ -217,6 +217,9 @@ fn initialize_core_logic(app_handle: &AppHandle) {
 
     // Create the recording overlay window (hidden by default)
     utils::create_recording_overlay(app_handle);
+
+    // Create the floating button (always visible)
+    crate::overlay::create_floating_button(app_handle);
 }
 
 #[tauri::command]
@@ -277,6 +280,7 @@ pub fn run() {
         shortcut::handy_keys::stop_handy_keys_recording,
         trigger_update_check,
         commands::cancel_operation,
+        commands::toggle_recording,
         commands::get_app_dir_path,
         commands::get_app_settings,
         commands::get_default_settings,

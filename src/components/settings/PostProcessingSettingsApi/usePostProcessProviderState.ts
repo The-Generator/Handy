@@ -10,6 +10,7 @@ type PostProcessProviderState = {
   selectedProvider: PostProcessProvider | undefined;
   isCustomProvider: boolean;
   isAppleProvider: boolean;
+  isOllamaProvider: boolean;
   appleIntelligenceUnavailable: boolean;
   baseUrl: string;
   handleBaseUrlChange: (value: string) => void;
@@ -184,6 +185,7 @@ export const usePostProcessProviderState = (): PostProcessProviderState => {
   );
 
   const isCustomProvider = selectedProvider?.id === "custom";
+  const isOllamaProvider = selectedProvider?.id === "ollama";
 
   // No automatic fetching - user must click refresh button
 
@@ -193,6 +195,7 @@ export const usePostProcessProviderState = (): PostProcessProviderState => {
     selectedProvider,
     isCustomProvider,
     isAppleProvider,
+    isOllamaProvider,
     appleIntelligenceUnavailable,
     baseUrl,
     handleBaseUrlChange,

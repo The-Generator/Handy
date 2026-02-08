@@ -270,6 +270,8 @@ impl ShortcutAction for TranscribeAction {
         if recording_started {
             // Dynamically register the cancel shortcut in a separate task to avoid deadlock
             shortcut::register_cancel_shortcut(app);
+            // Notify floating button of recording state
+            crate::overlay::emit_recording_state(app, true);
         }
 
         debug!(
@@ -301,6 +303,9 @@ impl ShortcutAction for TranscribeAction {
 
         let binding_id = binding_id.to_string(); // Clone binding_id for the async task
         let post_process = self.post_process;
+
+        // Notify floating button that recording has stopped
+        crate::overlay::emit_recording_state(app, false);
 
         tauri::async_runtime::spawn(async move {
             let binding_id = binding_id.clone(); // Clone for the inner async task

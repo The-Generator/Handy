@@ -454,6 +454,14 @@ fn default_post_process_providers() -> Vec<PostProcessProvider> {
         });
     }
 
+    providers.push(PostProcessProvider {
+        id: "ollama".to_string(),
+        label: "Ollama (Local)".to_string(),
+        base_url: "http://localhost:11434/v1".to_string(),
+        allow_base_url_edit: false,
+        models_endpoint: Some("/models".to_string()),
+    });
+
     // Custom provider always comes last
     providers.push(PostProcessProvider {
         id: "custom".to_string(),
@@ -477,6 +485,9 @@ fn default_post_process_api_keys() -> HashMap<String, String> {
 fn default_model_for_provider(provider_id: &str) -> String {
     if provider_id == APPLE_INTELLIGENCE_PROVIDER_ID {
         return APPLE_INTELLIGENCE_DEFAULT_MODEL_ID.to_string();
+    }
+    if provider_id == "ollama" {
+        return "llama3.2:3b".to_string();
     }
     String::new()
 }

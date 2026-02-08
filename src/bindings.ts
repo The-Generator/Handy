@@ -329,6 +329,13 @@ async triggerUpdateCheck() : Promise<Result<null, string>> {
 async cancelOperation() : Promise<void> {
     await TAURI_INVOKE("cancel_operation");
 },
+/**
+ * Toggle recording on/off from the floating overlay button.
+ * Uses the "transcribe" action (without post-processing) by default.
+ */
+async toggleRecording() : Promise<void> {
+    await TAURI_INVOKE("toggle_recording");
+},
 async getAppDirPath() : Promise<Result<string, string>> {
     try {
     return { status: "ok", data: await TAURI_INVOKE("get_app_dir_path") };

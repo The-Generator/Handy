@@ -36,6 +36,7 @@ pub fn cancel_current_operation(app: &AppHandle) {
     // Update tray icon and hide overlay
     change_tray_icon(app, crate::tray::TrayIconState::Idle);
     hide_recording_overlay(app);
+    emit_recording_state(app, false);
 
     // Unload model if immediate unload is enabled
     let tm = app.state::<Arc<TranscriptionManager>>();

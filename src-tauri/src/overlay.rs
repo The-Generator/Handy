@@ -356,6 +356,112 @@ pub fn hide_recording_overlay(app_handle: &AppHandle) {
     }
 }
 
+const FLOATING_BUTTON_SIZE: f64 = 48.0;
+
+/// Creates the always-visible floating button for click-to-record
+#[cfg(target_os = "macos")]
+pub fn create_floating_button(app_handle: &AppHandle) {
+    log::info!("Creating floating button...");
+
+    let monitor = match get_monitor_with_cursor(app_handle) {
+        Some(m) => m,
+        None => {
+            log::warn!("get_monitor_with_cursor returned None, trying primary_monitor");
+            match app_handle.primary_monitor() {
+                Ok(Some(m)) => m,
+                _ => {
+                    log::error!("No monitor found, cannot create floating button");
+                    return;
+                }
+            }
+        }
+    };
+
+    let scale = monitor.scale_factor();
+    let work_area = monitor.work_area();
+    let work_area_width = work_area.size.width as f64 / scale;
+    let work_area_y = work_area.position.y as f64 / scale;
+    let work_area_x = work_area.position.x as f64 / scale;
+
+    // Position at right edge, vertically centered
+    let x = work_area_x + work_area_width - FLOATING_BUTTON_SIZE - 16.0;
+    let y = work_area_y + (work_area.size.height as f64 / scale) / 2.0;
+    log::info!("Floating button position: ({}, {})", x, y);
+
+    match PanelBuilder::<_, RecordingOverlayPanel>::new(app_handle, "floating_button")
+        .url(WebviewUrl::App("src/floating-button/index.html".into()))
+        .title("WhisperFlow")
+        .position(tauri::Position::Logical(tauri::LogicalPosition { x, y }))
+        .level(PanelLevel::Floating)
+        .size(tauri::Size::Logical(tauri::LogicalSize {
+            width: FLOATING_BUTTON_SIZE,
+            height: FLOATING_BUTTON_SIZE,
+        }))
+        .has_shadow(false)
+        .transparent(true)
+        .no_activate(true)
+        .corner_radius(FLOATING_BUTTON_SIZE / 2.0)
+        .with_window(|w| {
+            w.decorations(false)
+                .transparent(true)
+                .resizable(false)
+        })
+        .collection_behavior(
+            CollectionBehavior::new()
+                .can_join_all_spaces()
+                .full_screen_auxiliary(),
+        )
+        .build()
+    {
+        Ok(panel) => {
+            log::info!("Floating button panel created, showing...");
+            let _ = panel.show();
+        }
+        Err(e) => {
+            log::error!("Failed to create floating button panel: {}", e);
+        }
+    }
+}
+
+/// Creates the always-visible floating button for click-to-record (non-macOS)
+#[cfg(not(target_os = "macos"))]
+pub fn create_floating_button(app_handle: &AppHandle) {
+    let position = calculate_overlay_position(app_handle);
+
+    let mut builder = WebviewWindowBuilder::new(
+        app_handle,
+        "floating_button",
+        tauri::WebviewUrl::App("src/floating-button/index.html".into()),
+    )
+    .title("WhisperFlow")
+    .resizable(false)
+    .inner_size(FLOATING_BUTTON_SIZE, FLOATING_BUTTON_SIZE)
+    .shadow(false)
+    .maximizable(false)
+    .minimizable(false)
+    .closable(false)
+    .accept_first_mouse(true)
+    .decorations(false)
+    .always_on_top(true)
+    .skip_taskbar(true)
+    .transparent(true)
+    .focused(false)
+    .visible(true);
+
+    if let Some((x, y)) = position {
+        builder = builder.position(x, y);
+    }
+
+    match builder.build() {
+        Ok(_window) => {
+            debug!("Floating button window created");
+        }
+        Err(e) => {
+            debug!("Failed to create floating button window: {}", e);
+        }
+    }
+}
+
 pub fn emit_levels(app_handle: &AppHandle, levels: &Vec<f32>) {
     // emit levels to main app
     let _ = app_handle.emit("mic-level", levels);
@@ -363,5 +469,17 @@ pub fn emit_levels(app_handle: &AppHandle, levels: &Vec<f32>) {
     // also emit to the recording overlay if it's open
     if let Some(overlay_window) = app_handle.get_webview_window("recording_overlay") {
         let _ = overlay_window.emit("mic-level", levels);
+    }
+
+    // also emit to the floating button if it's open
+    if let Some(floating_button) = app_handle.get_webview_window("floating_button") {
+        let _ = floating_button.emit("mic-level", levels);
+    }
+}
+
+/// Notify the floating button of recording state changes
+pub fn emit_recording_state(app_handle: &AppHandle, is_recording: bool) {
+    if let Some(floating_button) = app_handle.get_webview_window("floating_button") {
+        let _ = floating_button.emit("recording-state", is_recording);
     }
 }

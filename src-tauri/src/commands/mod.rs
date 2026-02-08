@@ -3,8 +3,11 @@ pub mod history;
 pub mod models;
 pub mod transcription;
 
+use crate::actions::ACTION_MAP;
+use crate::managers::audio::AudioRecordingManager;
 use crate::settings::{get_settings, write_settings, AppSettings, LogLevel};
 use crate::utils::cancel_current_operation;
+use std::sync::Arc;
 use tauri::{AppHandle, Manager};
 use tauri_plugin_opener::OpenerExt;
 
@@ -12,6 +15,24 @@ use tauri_plugin_opener::OpenerExt;
 #[specta::specta]
 pub fn cancel_operation(app: AppHandle) {
     cancel_current_operation(&app);
+}
+
+/// Toggle recording on/off from the floating overlay button.
+/// Uses the "transcribe" action (without post-processing) by default.
+#[tauri::command]
+#[specta::specta]
+pub fn toggle_recording(app: AppHandle) {
+    let audio_manager = app.state::<Arc<AudioRecordingManager>>();
+    let is_currently_recording = audio_manager.is_recording();
+
+    let binding_id = "transcribe";
+    if let Some(action) = ACTION_MAP.get(binding_id) {
+        if is_currently_recording {
+            action.stop(&app, binding_id, "");
+        } else {
+            action.start(&app, binding_id, "");
+        }
+    }
 }
 
 #[tauri::command]
