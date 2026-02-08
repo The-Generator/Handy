@@ -232,6 +232,7 @@ const AccessibilityOnboarding: React.FC<AccessibilityOnboardingProps> = ({
     <div className="h-screen w-screen flex flex-col p-6 gap-6 items-center justify-center">
       <div className="flex flex-col items-center gap-2">
         <HandyTextLogo width={200} />
+        <p className="text-text/70 font-medium">The Generator Transcription Tool</p>
       </div>
 
       <div className="max-w-md w-full flex flex-col items-center gap-4">
