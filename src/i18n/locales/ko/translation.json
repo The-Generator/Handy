@@ -24,33 +24,9 @@
       "speed": "속도"
     },
     "models": {
-      "small": {
-        "name": "Whisper Small",
-        "description": "빠르고 상당히 정확합니다."
-      },
-      "medium": {
-        "name": "Whisper Medium",
-        "description": "좋은 정확도, 중간 속도"
-      },
-      "turbo": {
-        "name": "Whisper Turbo",
-        "description": "정확도와 속도의 균형."
-      },
-      "large": {
-        "name": "Whisper Large",
-        "description": "좋은 정확도지만 느립니다."
-      },
-      "parakeet-tdt-0.6b-v2": {
-        "name": "Parakeet V2",
-        "description": "영어 전용. 영어 사용자를 위한 최고의 모델."
-      },
       "parakeet-tdt-0.6b-v3": {
         "name": "Parakeet V3",
         "description": "빠르고 정확함"
-      },
-      "moonshine-base": {
-        "name": "Moonshine Base",
-        "description": "매우 빠름, 영어 전용. 억양을 잘 처리합니다."
       }
     },
     "errors": {

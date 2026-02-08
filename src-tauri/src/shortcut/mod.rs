@@ -978,3 +978,19 @@ pub fn change_app_language_setting(app: AppHandle, language: String) -> Result<(
 
     Ok(())
 }
+
+#[tauri::command]
+#[specta::specta]
+pub fn change_show_floating_button_setting(app: AppHandle, enabled: bool) -> Result<(), String> {
+    let mut settings = settings::get_settings(&app);
+    settings.show_floating_button = enabled;
+    settings::write_settings(&app, settings);
+
+    if enabled {
+        crate::overlay::show_floating_button(&app);
+    } else {
+        crate::overlay::hide_floating_button(&app);
+    }
+
+    Ok(())
+}

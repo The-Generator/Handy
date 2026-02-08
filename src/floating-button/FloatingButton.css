@@ -16,12 +16,12 @@
 }
 
 .floating-button.idle {
-  background-color: rgba(30, 30, 30, 0.95);
-  border: 3px solid #00ff00;
+  background-color: rgba(10, 10, 10, 0.95);
+  border: 3px solid #22c55e;
 }
 
 .floating-button.idle:hover {
-  background-color: rgba(50, 50, 50, 0.95);
+  background-color: rgba(34, 197, 94, 0.2);
   transform: scale(1.08);
 }
 

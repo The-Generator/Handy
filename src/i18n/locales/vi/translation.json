@@ -25,33 +25,9 @@
       "speed": "tốc độ"
     },
     "models": {
-      "small": {
-        "name": "Whisper Small",
-        "description": "Nhanh và khá chính xác."
-      },
-      "medium": {
-        "name": "Whisper Medium",
-        "description": "Độ chính xác tốt, tốc độ trung bình"
-      },
-      "turbo": {
-        "name": "Whisper Turbo",
-        "description": "Cân bằng giữa độ chính xác và tốc độ."
-      },
-      "large": {
-        "name": "Whisper Large",
-        "description": "Độ chính xác tốt, nhưng chậm."
-      },
-      "parakeet-tdt-0.6b-v2": {
-        "name": "Parakeet V2",
-        "description": "Chỉ tiếng Anh. Mô hình tốt nhất cho người nói tiếng Anh."
-      },
       "parakeet-tdt-0.6b-v3": {
         "name": "Parakeet V3",
         "description": "Nhanh và chính xác"
-      },
-      "moonshine-base": {
-        "name": "Moonshine Base",
-        "description": "Very fast, English only. Handles accents well."
       }
     },
     "errors": {

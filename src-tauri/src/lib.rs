@@ -218,8 +218,11 @@ fn initialize_core_logic(app_handle: &AppHandle) {
     // Create the recording overlay window (hidden by default)
     utils::create_recording_overlay(app_handle);
 
-    // Create the floating button (always visible)
-    crate::overlay::create_floating_button(app_handle);
+    // Create floating button if enabled (must stay on main thread for macOS NSPanel)
+    let settings_for_button = settings::get_settings(app_handle);
+    if settings_for_button.show_floating_button {
+        crate::overlay::create_floating_button(app_handle);
+    }
 }
 
 #[tauri::command]
@@ -275,6 +278,7 @@ pub fn run() {
         shortcut::change_app_language_setting,
         shortcut::change_update_checks_setting,
         shortcut::change_keyboard_implementation_setting,
+        shortcut::change_show_floating_button_setting,
         shortcut::get_keyboard_implementation,
         shortcut::handy_keys::start_handy_keys_recording,
         shortcut::handy_keys::stop_handy_keys_recording,
@@ -351,7 +355,7 @@ pub fn run() {
                 }),
                 // File logs respect the user's settings (stored in FILE_LOG_LEVEL atomic)
                 Target::new(TargetKind::LogDir {
-                    file_name: Some("handy".into()),
+                    file_name: Some("pssst".into()),
                 })
                 .filter(|metadata| {
                     let file_level = FILE_LOG_LEVEL.load(Ordering::Relaxed);

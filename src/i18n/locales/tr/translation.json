@@ -24,33 +24,9 @@
       "speed": "hız"
     },
     "models": {
-      "small": {
-        "name": "Whisper Small",
-        "description": "Hızlı ve oldukça doğru."
-      },
-      "medium": {
-        "name": "Whisper Medium",
-        "description": "İyi doğruluk, orta hız."
-      },
-      "turbo": {
-        "name": "Whisper Turbo",
-        "description": "Dengeli doğruluk ve hız."
-      },
-      "large": {
-        "name": "Whisper Large",
-        "description": "İyi doğruluk, ancak yavaş."
-      },
-      "parakeet-tdt-0.6b-v2": {
-        "name": "Parakeet V2",
-        "description": "Yalnızca İngilizce. İngilizce konuşanlar için en iyi model."
-      },
       "parakeet-tdt-0.6b-v3": {
         "name": "Parakeet V3",
         "description": "Hızlı ve doğru."
-      },
-      "moonshine-base": {
-        "name": "Moonshine Base",
-        "description": "Çok hızlı, yalnızca İngilizce. Aksanları iyi işler."
       }
     },
     "errors": {

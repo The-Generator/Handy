@@ -390,7 +390,7 @@ pub fn create_floating_button(app_handle: &AppHandle) {
 
     match PanelBuilder::<_, RecordingOverlayPanel>::new(app_handle, "floating_button")
         .url(WebviewUrl::App("src/floating-button/index.html".into()))
-        .title("WhisperFlow")
+        .title("Pssst")
         .position(tauri::Position::Logical(tauri::LogicalPosition { x, y }))
         .level(PanelLevel::Floating)
         .size(tauri::Size::Logical(tauri::LogicalSize {
@@ -433,7 +433,7 @@ pub fn create_floating_button(app_handle: &AppHandle) {
         "floating_button",
         tauri::WebviewUrl::App("src/floating-button/index.html".into()),
     )
-    .title("WhisperFlow")
+    .title("Pssst")
     .resizable(false)
     .inner_size(FLOATING_BUTTON_SIZE, FLOATING_BUTTON_SIZE)
     .shadow(false)
@@ -481,5 +481,22 @@ pub fn emit_levels(app_handle: &AppHandle, levels: &Vec<f32>) {
 pub fn emit_recording_state(app_handle: &AppHandle, is_recording: bool) {
     if let Some(floating_button) = app_handle.get_webview_window("floating_button") {
         let _ = floating_button.emit("recording-state", is_recording);
+    }
+}
+
+/// Shows the floating button window
+pub fn show_floating_button(app_handle: &AppHandle) {
+    if let Some(btn) = app_handle.get_webview_window("floating_button") {
+        let _ = btn.show();
+    } else {
+        // Window doesn't exist yet, create it
+        create_floating_button(app_handle);
+    }
+}
+
+/// Hides the floating button window
+pub fn hide_floating_button(app_handle: &AppHandle) {
+    if let Some(btn) = app_handle.get_webview_window("floating_button") {
+        let _ = btn.hide();
     }
 }

@@ -24,33 +24,9 @@
       "speed": "speed"
     },
     "models": {
-      "small": {
-        "name": "Whisper Small",
-        "description": "Fast and fairly accurate."
-      },
-      "medium": {
-        "name": "Whisper Medium",
-        "description": "Good accuracy, medium speed"
-      },
-      "turbo": {
-        "name": "Whisper Turbo",
-        "description": "Balanced accuracy and speed."
-      },
-      "large": {
-        "name": "Whisper Large",
-        "description": "Good accuracy, but slow."
-      },
-      "parakeet-tdt-0.6b-v2": {
-        "name": "Parakeet V2",
-        "description": "English only. The best model for English speakers."
-      },
       "parakeet-tdt-0.6b-v3": {
         "name": "Parakeet V3",
         "description": "Fast and accurate"
-      },
-      "moonshine-base": {
-        "name": "Moonshine Base",
-        "description": "Very fast, English only. Handles accents well."
       }
     },
     "errors": {
@@ -59,7 +35,7 @@
     },
     "permissions": {
       "title": "Permissions Required",
-      "description": "Handy needs a couple of permissions to work properly.",
+      "description": "Pssst needs a couple of permissions to work properly.",
       "microphone": {
         "title": "Microphone Access",
         "description": "Required to hear your voice for transcription."
@@ -79,7 +55,7 @@
     }
   },
   "modelSelector": {
-    "welcome": "Welcome to Handy!",
+    "welcome": "Welcome to Pssst!",
     "downloadPrompt": "Download a model below to get started with transcription.",
     "availableModels": "Available Models",
     "downloadModels": "Download Models",
@@ -105,7 +81,7 @@
     "general": {
       "title": "General",
       "shortcut": {
-        "title": "Handy Shortcuts",
+        "title": "Pssst Shortcuts",
         "description": "Configure keyboard shortcuts to trigger speech-to-text recording",
         "loading": "Loading shortcuts...",
         "none": "No shortcuts configured",
@@ -186,7 +162,7 @@
       },
       "autostart": {
         "label": "Launch on Startup",
-        "description": "Automatically start Handy when you log in to your computer."
+        "description": "Automatically start Pssst when you log in to your computer."
       },
       "overlay": {
         "title": "Overlay Position",
@@ -196,6 +172,10 @@
           "bottom": "Bottom",
           "top": "Top"
         }
+      },
+      "floatingButton": {
+        "label": "Floating Button",
+        "description": "Show a floating record button on screen"
       },
       "pasteMethod": {
         "title": "Paste Method",
@@ -326,7 +306,7 @@
       },
       "updateChecks": {
         "label": "Check for Updates",
-        "description": "Automatically check for new versions of Handy"
+        "description": "Automatically check for new versions of Pssst"
       },
       "soundTheme": {
         "label": "Sound Theme",
@@ -390,11 +370,11 @@
       "title": "About",
       "version": {
         "title": "Version",
-        "description": "Current version of Handy"
+        "description": "Current version of Pssst"
       },
       "appDataDirectory": {
         "title": "App Data Directory",
-        "description": "Location where Handy stores its data"
+        "description": "Location where Pssst stores its data"
       },
       "sourceCode": {
         "title": "Source Code",
@@ -403,7 +383,7 @@
       },
       "supportDevelopment": {
         "title": "Support Development",
-        "description": "Help us continue building Handy",
+        "description": "Help us continue building Pssst",
         "button": "Donate"
       },
       "acknowledgments": {
@@ -411,7 +391,7 @@
         "whisper": {
           "title": "Whisper.cpp",
           "description": "High-performance inference of OpenAI's Whisper automatic speech recognition model",
-          "details": "Handy uses Whisper.cpp for fast, local speech-to-text processing. Thanks to the amazing work by Georgi Gerganov and contributors."
+          "details": "Pssst uses Whisper.cpp for fast, local speech-to-text processing. Thanks to the amazing work by Georgi Gerganov and contributors."
         }
       }
     }
@@ -454,7 +434,7 @@
   },
   "accessibility": {
     "permissionsRequired": "Accessibility Permissions Required",
-    "permissionsDescription": "Handy needs accessibility permissions to type transcribed text.",
+    "permissionsDescription": "Pssst needs accessibility permissions to type transcribed text.",
     "openSettings": "Open System Settings",
     "dismiss": "Dismiss"
   },
@@ -463,7 +443,7 @@
   },
   "appLanguage": {
     "title": "Application Language",
-    "description": "Change the language of the Handy interface"
+    "description": "Change the language of the Pssst interface"
   },
   "overlay": {
     "transcribing": "Transcribing..."

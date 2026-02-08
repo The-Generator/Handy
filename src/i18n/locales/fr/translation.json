@@ -25,33 +25,9 @@
       "speed": "vitesse"
     },
     "models": {
-      "small": {
-        "name": "Whisper Small",
-        "description": "Rapide et assez précis."
-      },
-      "medium": {
-        "name": "Whisper Medium",
-        "description": "Bonne précision, vitesse moyenne"
-      },
-      "turbo": {
-        "name": "Whisper Turbo",
-        "description": "Équilibre entre précision et vitesse."
-      },
-      "large": {
-        "name": "Whisper Large",
-        "description": "Bonne précision, mais lent."
-      },
-      "parakeet-tdt-0.6b-v2": {
-        "name": "Parakeet V2",
-        "description": "Anglais uniquement. Le meilleur modèle pour les anglophones."
-      },
       "parakeet-tdt-0.6b-v3": {
         "name": "Parakeet V3",
         "description": "Rapide et précis"
-      },
-      "moonshine-base": {
-        "name": "Moonshine Base",
-        "description": "Very fast, English only. Handles accents well."
       }
     },
     "errors": {

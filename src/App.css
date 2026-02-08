@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --color-text: #0f0f0f;
-  --color-background: #fbfbfb;
-  --color-background-ui: #da5893;
-  --color-logo-primary: #faa2ca;
-  --color-logo-stroke: #382731;
-  --color-text-stroke: #f6f6f6;
+  --color-text: #e0e0e0;
+  --color-background: #0a0a0a;
+  --color-background-ui: #22c55e;
+  --color-logo-primary: #22c55e;
+  --color-logo-stroke: #0a0a0a;
+  --color-text-stroke: #1a1a1a;
   --color-mid-gray: #808080;
 }
 
@@ -15,13 +15,6 @@
   font-size: 15px;
   line-height: 24px;
   font-weight: 400;
-
-  /* Colors - Light Theme */
-  /* --color-text: #0f0f0f;
-  --color-background: #fbfbfb;
-  --color-logo-primary: #FAA2CA;
-  --color-logo-stroke: #382731;
-  --color-text-stroke: #f6f6f6; */
 
   /* Typography settings */
   font-synthesis: none;
@@ -46,11 +39,10 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Colors - Dark Theme */
-    --color-text: #fbfbfb;
-    --color-background: #2c2b29;
-    --color-logo-primary: #f28cbb;
-    --color-logo-stroke: #fad1ed;
+    --color-text: #e0e0e0;
+    --color-background: #0a0a0a;
+    --color-logo-primary: #22c55e;
+    --color-logo-stroke: #1a1a1a;
   }
 }
 

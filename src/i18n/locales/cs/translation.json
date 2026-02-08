@@ -24,33 +24,9 @@
       "speed": "rychlost"
     },
     "models": {
-      "small": {
-        "name": "Whisper Small",
-        "description": "Rychlý a poměrně přesný."
-      },
-      "medium": {
-        "name": "Whisper Medium",
-        "description": "Dobrá přesnost, střední rychlost"
-      },
-      "turbo": {
-        "name": "Whisper Turbo",
-        "description": "Vyvážená přesnost a rychlost."
-      },
-      "large": {
-        "name": "Whisper Large",
-        "description": "Dobrá přesnost, ale pomalý."
-      },
-      "parakeet-tdt-0.6b-v2": {
-        "name": "Parakeet V2",
-        "description": "Pouze angličtina. Nejlepší model pro anglicky mluvící."
-      },
       "parakeet-tdt-0.6b-v3": {
         "name": "Parakeet V3",
         "description": "Rychlý a přesný"
-      },
-      "moonshine-base": {
-        "name": "Moonshine Base",
-        "description": "Velmi rychlý, pouze angličtina. Dobře zvládá přízvuky."
       }
     },
     "errors": {

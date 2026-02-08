@@ -315,6 +315,8 @@ pub struct AppSettings {
     pub experimental_enabled: bool,
     #[serde(default)]
     pub keyboard_implementation: KeyboardImplementation,
+    #[serde(default = "default_show_floating_button")]
+    pub show_floating_button: bool,
     #[serde(default = "default_paste_delay_ms")]
     pub paste_delay_ms: u64,
 }
@@ -368,6 +370,10 @@ fn default_word_correction_threshold() -> f64 {
 
 fn default_paste_delay_ms() -> u64 {
     60
+}
+
+fn default_show_floating_button() -> bool {
+    true
 }
 
 fn default_history_limit() -> usize {
@@ -642,6 +648,7 @@ pub fn get_default_settings() -> AppSettings {
         app_language: default_app_language(),
         experimental_enabled: false,
         keyboard_implementation: KeyboardImplementation::default(),
+        show_floating_button: default_show_floating_button(),
         paste_delay_ms: default_paste_delay_ms(),
     }
 }

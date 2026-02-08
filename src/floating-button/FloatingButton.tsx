@@ -7,20 +7,16 @@ const FloatingButton: React.FC = () => {
   const [isRecording, setIsRecording] = useState(false);
 
   useEffect(() => {
+    let unlistenState: (() => void) | undefined;
     const setupListeners = async () => {
-      const unlistenState = await listen<boolean>(
-        "recording-state",
-        (event) => {
-          setIsRecording(event.payload);
-        },
-      );
-
-      return () => {
-        unlistenState();
-      };
+      unlistenState = await listen<boolean>("recording-state", (event) => {
+        setIsRecording(event.payload);
+      });
     };
-
     setupListeners();
+    return () => {
+      unlistenState?.();
+    };
   }, []);
 
   const handleClick = () => {

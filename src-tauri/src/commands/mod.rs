@@ -25,6 +25,9 @@ pub fn toggle_recording(app: AppHandle) {
     let audio_manager = app.state::<Arc<AudioRecordingManager>>();
     let is_currently_recording = audio_manager.is_recording();
 
+    // Emit recording state immediately to prevent UI desync on rapid clicks
+    crate::overlay::emit_recording_state(&app, !is_currently_recording);
+
     let binding_id = "transcribe";
     if let Some(action) = ACTION_MAP.get(binding_id) {
         if is_currently_recording {
